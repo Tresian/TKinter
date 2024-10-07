@@ -1,6 +1,5 @@
 import time
 from random import choice
-S
 from tkinter import *
 from tkinter import ttk
 
@@ -19,17 +18,14 @@ class Game:
     DIFFICULTY_LEVEL = ["Easy","Normal", "Hard"]
 
     def __init__(self) -> None:
-
         self.time_game = 0
 
         self.buttons = []
-        self.play_area = [i for i in range(10 ,16*10, 10)]
-        self.play_area.append(0)
+        self.play_area = [i for i in range(0 ,16*10, 10)]
 
         self.open_menu()
 
     def open_menu(self) -> None:
-
         self.window = Tk(self.GAME_TITLE)
         self.window.config(bg="black")
         self.window.geometry(self.MENU_WINDOW_SIZE)
@@ -49,7 +45,6 @@ class Game:
         self.window.mainloop()
 
     def open_game(self) -> None:
-
         self.window.destroy()
         self.window = Tk(self.GAME_TITLE)
         self.window.geometry(self.GAME_WINDOW_SIZE)
@@ -93,7 +88,6 @@ class Game:
         # self.results_surf.mainloop()
 
     def complexity(self) -> None:
-
         match self.combobox.get():
             case "Easy": 
                 self.time_game = 20
@@ -106,14 +100,12 @@ class Game:
         self.open_game()
 
     def operation(self) -> None:
-        
         if self.buttons == sorted(self.buttons):
             self.open_results(True)
         elif self.second.get() == 0 and self.minute.get() == 0:
             self.open_results(False)
 
     def update_clock(self) -> None:
-
         if self.second.get() == 0 and self.minute.get() > 0:
             self.minute.set(self.minute.get()-1)
             self.second.set(59)
@@ -125,7 +117,6 @@ class Game:
         self.window.after(1000, self.update_clock)
 
     def play(self, n) -> None:
-
         m = self.play_area.index(0)
         if abs(m - n) == 1 and n // 4 == m // 4 or abs(m - n) == 4:
             self.play_area[m], self.play_area[n] = self.play_area[n], self.play_area[m]
@@ -133,7 +124,6 @@ class Game:
             self.buttons[n].config(text=" ")
 
     def convert_to_int(self, obj: str) -> list[int, int]:
-    
         if isinstance(obj, str):
             x, y = int(obj[:obj.find('x')]), int(obj[obj.find('x')+1:])
 
